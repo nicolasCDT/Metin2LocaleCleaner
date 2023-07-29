@@ -31,7 +31,7 @@ mapping = {
 ```bash
 python main.py
 ```
-
+You can now use your newly edited locale files located in the locale directory.
 ## Configuration Options
 You can configure the tool using the `LocaleCleaner` class.
 * `locale_directory`: Modify the folder for local files (default is `locale`).
