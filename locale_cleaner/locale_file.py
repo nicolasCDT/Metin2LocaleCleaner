@@ -33,17 +33,8 @@ class LocaleFile:
         if not len(self.content.keys()):
             print(f"\t WARNING: No keywords found")
 
-    def __contains__(self, keyword: str) -> bool:
-        """Check if a keyword is in the locale file
-        :param keyword: Keyword to check
-        :return: If the keyword is in the locale file
+    def get_content(self) -> dict[str, str]:
+        """Return the content of the locale file
+        :return: Content of the locale file
         """
-        return keyword in self.content.keys()
-
-    def __str__(self) -> str:
-        """Return a string representation of the LocaleFile object"""
-        return f"LocaleFile({self.file_path})"
-
-    def __repr__(self) -> str:
-        """Return a representation of the LocaleFile object"""
-        return self.__str__()
+        return self.content

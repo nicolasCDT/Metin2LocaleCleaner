@@ -1,5 +1,5 @@
 from chardet import detect
-from os.path import exists
+from os.path import exists, relpath, basename, splitext
 from re import findall, escape, IGNORECASE
 
 
@@ -29,12 +29,21 @@ class SourceFile:
             print(f"Reading {self.file_path}...")
             content = file.read()
             for module in self.modules:
-                regex_pattern = r"\b" + escape(module) + r"\.([a-zA-Z_]\w*)(?![\[\(])\b"
+                file_name = splitext(basename(relpath(self.file_path)))[0]
+                if file_name.lower() == module.lower():
+                    regex_pattern = r"([a-zA-Z_]\w*)(?![\[\(])\b"
+                else:
+                    regex_pattern = (
+                        r"\b" + escape(module) + r"\.([a-zA-Z_]\w*)(?![\[\(])\b"
+                    )
+
                 self.modules_constants[module] = findall(
                     regex_pattern, content, IGNORECASE
                 )
 
                 # DEBUG
+                if file_name.lower() == module.lower():
+                    print(f"\t -> Results does not be accurate for this file.")
                 print(
                     f"\t -> Found {len(self.modules_constants[module])} constants for {module}"
                 )
@@ -45,10 +54,6 @@ class SourceFile:
             return self.modules_constants[module]
         return list()
 
-    def __str__(self) -> str:
-        """Return a string representation of the sourceFile object"""
-        return f"LocaleFile({self.file_path})"
-
-    def __repr__(self) -> str:
-        """Return a representation of the sourceFile object"""
-        return self.__str__()
+    def get_modules(self) -> list[str]:
+        """Return all modules"""
+        return list(self.modules_constants.keys())

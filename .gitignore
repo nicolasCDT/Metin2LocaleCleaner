@@ -22,8 +22,3 @@ dist/
 *.pyc
 *.pyo
 *.egg-info/
-
-source/*
-locale/*
-!source/.gitignore
-!locale/.gitignore
