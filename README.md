@@ -19,6 +19,14 @@ pip install -r requirements.txt
 3. Configuration
     * Place your locale files in the `locale`directory.
     * Place your source files (root/uiscript/locale) in the `source` directory.
+    * Configure the mapping dictionary in the main.py script with the paths to your locale files. For example:
+```python
+mapping = {
+    # "file_name" : "python_file_name"
+    "locale_game.txt": "localeInfo",
+    "locale_interface.txt": "uiScriptLocale",
+}
+```
 4. Run the main.py script to clean the unused lines from the locale files:
 ```bash
 python main.py
