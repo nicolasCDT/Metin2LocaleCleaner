@@ -32,6 +32,9 @@ mapping = {
 python main.py
 ```
 You can now use your newly edited locale files located in the locale directory.
+
+***Note***: The tool supports multi-language systems, allowing you to add multiple files to localeInfo, uiScriptLocale, etc., and have them processed one by one.
+
 ## Configuration Options
 You can configure the tool using the `LocaleCleaner` class.
 * `locale_directory`: Modify the folder for local files (default is `locale`).
